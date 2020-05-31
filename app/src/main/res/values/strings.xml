@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MyBudget</string>
+    <string name="spent_amount">Spent Amount</string>
+    <string name="submit">Submit</string>
+    <string name="balance">Balance</string>
+</resources>
