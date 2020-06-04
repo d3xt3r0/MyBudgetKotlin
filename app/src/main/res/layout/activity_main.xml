@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="center"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:hint="@string/spent_amount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
