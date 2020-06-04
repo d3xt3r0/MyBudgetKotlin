@@ -2,10 +2,13 @@ package com.example.mybudget
 
 import android.R.attr.defaultValue
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +39,9 @@ class MainActivity : AppCompatActivity() {
             spentAmount.hint = "Enter the budget"
             button.isEnabled = false
             button.setBackgroundColor(Color.LTGRAY)
+        }
+        else{
+            spentAmount.hint = "Spent amount"
         }
 
         //When the amount is inserted , then only the button becomes active
@@ -80,6 +86,29 @@ class MainActivity : AppCompatActivity() {
             }
 
 
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_reset -> {
+                balanceAmount.text = "Balance"
+                balanceAmount.visibility = View.INVISIBLE
+                val sharedPref = getSharedPreferences(
+                    PREFERENCE_FILE_KEY, Context.MODE_PRIVATE)
+                val editor = sharedPref.edit()
+                editor.clear()
+                editor.apply()
+                spentAmount.hint = "Enter a budget"
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
